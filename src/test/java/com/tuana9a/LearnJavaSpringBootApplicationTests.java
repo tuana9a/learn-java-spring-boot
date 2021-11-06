@@ -6,8 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class LearnJavaSpringBootApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    public void test() {
+        System.out.println("hello world");
+    }
 
 }

@@ -2,7 +2,7 @@ package com.tuana9a.utils;
 
 import java.security.MessageDigest;
 
-public class EncodeUtil {
+public class EncodeUtils {
 
     public static String getSHA256(String password) {
         String result = null;

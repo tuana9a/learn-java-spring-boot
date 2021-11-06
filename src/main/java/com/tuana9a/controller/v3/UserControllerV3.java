@@ -5,7 +5,7 @@ import com.tuana9a.entities.form.LoginForm;
 import com.tuana9a.entities.form.RegisterForm;
 import com.tuana9a.repository.v3.UserRepoV3;
 import com.tuana9a.service.JwtService;
-import com.tuana9a.utils.EncodeUtil;
+import com.tuana9a.utils.EncodeUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,7 @@ public class UserControllerV3 {
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginForm form) {
-        boolean exist = repo.existsByUsernameAndPasswordAndDeletedFalse(form.getUsername(), EncodeUtil.getSHA256(form.getPassword()));
+        boolean exist = repo.existsByUsernameAndPasswordAndDeletedFalse(form.getUsername(), EncodeUtils.getSHA256(form.getPassword()));
         if (exist) {
             return ResponseEntity.ok(jwtService.generateToken(form.getUsername()));
         }
@@ -38,7 +38,7 @@ public class UserControllerV3 {
         if (!exist) {
             AppUser user = AppUser.builder()
                     .username(form.getUsername())
-                    .password(EncodeUtil.getSHA256(form.getPassword()))
+                    .password(EncodeUtils.getSHA256(form.getPassword()))
                     .name(form.getName())
                     .deleted(false)
                     .build();

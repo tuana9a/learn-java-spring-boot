@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 
 @AllArgsConstructor
-public class SocialController {
+public class OAuthGoogleController {
 
     private final JwtService jwtService;
     private final GoogleService googleService;
 
-    @GetMapping("/login-google")
-    public String loginGoogle() {
+    @GetMapping("/google/login")
+    public String login() {
         return "redirect:" + googleService.createAuthorizationURL();
     }
 
-    @GetMapping("/login-google/callback")
-    public ResponseEntity<Object> googleCallBack(@RequestParam(name = "code") String code) {
+    @GetMapping("/google/callback")
+    public ResponseEntity<Object> callback(@RequestParam(name = "code") String code) {
         try {
             String accessToken = googleService.createAccessToken(code);
             return ResponseEntity.ok(googleService.getUser(accessToken));

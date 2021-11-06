@@ -29,7 +29,7 @@ public abstract class BaseService<T> {
 
     @SuppressWarnings("unchecked")
     public T save(T data) throws Exception {
-        return (T) ((JpaRepository<T, Integer>) repo).save(data);
+        return ((JpaRepository<T, Integer>) repo).save(data);
     }
 
     public void delete(Integer id) throws Exception {

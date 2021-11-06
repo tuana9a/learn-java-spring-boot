@@ -55,14 +55,12 @@ public class GoogleService implements SocialService {
     public AppUser getUser(String token) throws Exception {
         String link = linkUser + token; // tạo link api
         String response = Request.Get(link).execute().returnContent().asString(); // call api
-        ObjectMapper mapper = new ObjectMapper();
-        GooglePojo pojo = mapper.readValue(response, GooglePojo.class); // map với entity
+        GooglePojo pojo = new ObjectMapper().readValue(response, GooglePojo.class); // map với entity
         System.out.println(pojo);
         String userId = pojo.getId();
         AppUser user = userRepo.findByUsernameAndDeletedFalse(userId); // check user đã có chưa
 
-        if (user != null)
-            return user;
+        if (user != null) return user;
 
         AppUser newUser = AppUser.builder() // tạo user mới
 
