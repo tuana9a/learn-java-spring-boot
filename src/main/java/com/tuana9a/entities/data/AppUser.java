@@ -1,25 +1,29 @@
 package com.tuana9a.entities.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user")
 
-@Data
+@Getter
+@Setter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class AppUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
+
+    @Column(name = "google_id")
+    private String googleId;
 
     @Column(name = "username")
     private String username;

@@ -1,8 +1,10 @@
 package com.tuana9a.controller;
 
+import com.tuana9a.entities.data.AppUser;
+import com.tuana9a.repository.v3.UserRepoV3;
 import com.tuana9a.service.GoogleService;
 import com.tuana9a.service.JwtService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-
-@AllArgsConstructor
 public class OAuthGoogleController {
 
-    private final JwtService jwtService;
-    private final GoogleService googleService;
+    @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private GoogleService googleService;
+
+    @Autowired
+    private UserRepoV3 userRepo;
 
     @GetMapping("/google/login")
     public String login() {
@@ -23,14 +29,20 @@ public class OAuthGoogleController {
     }
 
     @GetMapping("/google/callback")
-    public ResponseEntity<Object> callback(@RequestParam(name = "code") String code) {
-        try {
-            String accessToken = googleService.createAccessToken(code);
-            return ResponseEntity.ok(googleService.getUser(accessToken));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body(e);
+    public ResponseEntity<Object> callback(@RequestParam(name = "code") String code) throws Exception {
+        String accessToken = googleService.createAccessToken(code);
+        AppUser googleUser = googleService.getUserInfoByToken(accessToken);
+        AppUser existUser = userRepo.findByUsernameAndDeletedFalse(googleUser.getUsername());
+        AppUser result;
+        if (existUser != null) {
+            existUser.setGoogleId(googleUser.getGoogleId());
+            existUser.setName(googleUser.getName());
+            result = userRepo.save(existUser);
+        } else {
+            googleUser.setId(System.currentTimeMillis());
+            result = userRepo.save(googleUser);
         }
+        return ResponseEntity.ok(result);
     }
 
 }

@@ -7,5 +7,5 @@ public interface SocialService {
             
     String createAccessToken(String code) throws Exception;
             
-    AppUser getUser(String token) throws Exception;
+    AppUser getUserInfoByToken(String token) throws Exception;
 }

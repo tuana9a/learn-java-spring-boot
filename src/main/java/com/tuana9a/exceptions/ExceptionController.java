@@ -10,6 +10,6 @@ import java.util.Arrays;
 public class ExceptionController {
     @ExceptionHandler
     public ResponseEntity<String> exception(Exception e) {
-        return ResponseEntity.status(500).body("Exception: " + e.getMessage() + Arrays.toString(e.getStackTrace()));
+        return ResponseEntity.status(500).body("Exception: " + e.getMessage());
     }
 }

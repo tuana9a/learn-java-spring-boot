@@ -8,7 +8,6 @@ import org.apache.http.client.fluent.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class GoogleService implements SocialService {
 
-    @Autowired
-    private UserRepoV3 userRepo;
 
     @Value("${google.appId}")
     private String appId;
@@ -29,7 +26,7 @@ public class GoogleService implements SocialService {
     private String redirect;
 
     @Value("${google.user_info}")
-    private String linkUser;
+    private String urlToGetUserInfo;
 
     @Value("${google.scope}")
     private String scope;
@@ -46,32 +43,29 @@ public class GoogleService implements SocialService {
 
     @Override
     public String createAccessToken(String code) throws Exception {
-        GoogleConnectionFactory connectionFactory = new GoogleConnectionFactory(appId, appSecret);
-        AccessGrant accessGrant = connectionFactory.getOAuthOperations().exchangeForAccess(code, redirect, null);
-        return accessGrant.getAccessToken();
+        return new GoogleConnectionFactory(appId, appSecret).getOAuthOperations()
+                .exchangeForAccess(code, redirect, null)
+                .getAccessToken();
     }
 
     @Override
-    public AppUser getUser(String token) throws Exception {
-        String link = linkUser + token; // tạo link api
-        String response = Request.Get(link).execute().returnContent().asString(); // call api
+    public AppUser getUserInfoByToken(String token) throws Exception {
+        String url = urlToGetUserInfo + token; // tạo link api
+        String response = Request.Get(url)
+                .execute()
+                .returnContent()
+                .asString(); // call api
         GooglePojo pojo = new ObjectMapper().readValue(response, GooglePojo.class); // map với entity
         System.out.println(pojo);
-        String userId = pojo.getId();
-        AppUser user = userRepo.findByUsernameAndDeletedFalse(userId); // check user đã có chưa
 
-        if (user != null) return user;
 
-        AppUser newUser = AppUser.builder() // tạo user mới
-
-                .username(pojo.getId())
+        return AppUser.builder() // tạo user mới
+                .googleId(pojo.getId())
+                .username(pojo.getEmail())
                 .name(pojo.getName())
                 .password("")
                 .deleted(false)
-
                 .build();
-
-        return userRepo.save(newUser);
 
     }
 }
