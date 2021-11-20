@@ -1,10 +1,13 @@
 package com.tuana9a.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.security.MessageDigest;
 
+@Component
 public class EncodeUtils {
 
-    public static String getSHA256(String password) {
+    public String getSHA256(String password) {
         String result = null;
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
@@ -18,7 +21,7 @@ public class EncodeUtils {
 
     }
 
-    public static String bytesToHex(byte[] bytes) {
+    public String bytesToHex(byte[] bytes) {
         StringBuilder result = new StringBuilder();
         for (byte b : bytes) {
             result.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
