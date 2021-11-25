@@ -1,4 +1,4 @@
-package com.tuana9a.entities.data;
+package com.tuana9a.entities;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -14,16 +14,17 @@ import java.util.List;
 @Entity
 @Table(name = "product")
 
-@Data
+@Getter
+@Setter
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -50,22 +51,17 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "bill_has_product",
             joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "bill_id"))
-    @JsonSerialize(using = Bill.ListSerializer.class)
-    private List<Bill> bills;
-
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    @JsonSerialize(using = Order.ListSerializer.class)
+    private List<Order> orders;
 
     public static class SingleSerializer extends JsonSerializer<Product> {
         @Override
         public void serialize(Product product, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-            jsonGenerator.writeObject(ShortenJson.builder()
+            jsonGenerator.writeObject(Product.builder()
                     .id(product.getId())
                     .name(product.getName())
                     .price(product.getPrice())
@@ -74,10 +70,7 @@ public class Product {
                     .introduction(product.getIntroduction())
                     .created(product.getCreated())
                     .deleted(product.getDeleted())
-
                     .brand(product.getBrand())
-                    .category(product.getCategory())
-
                     .build());
         }
 
@@ -86,8 +79,8 @@ public class Product {
     public static class ListSerializer extends JsonSerializer<List<Product>> {
         @Override
         public void serialize(List<Product> products, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-            List<ShortenJson> result = new ArrayList<>();
-            products.forEach(product -> result.add(ShortenJson.builder()
+            List<Product> result = new ArrayList<>();
+            products.forEach(product -> result.add(Product.builder()
                     .id(product.getId())
                     .name(product.getName())
                     .price(product.getPrice())
@@ -97,39 +90,10 @@ public class Product {
                     .created(product.getCreated())
                     .deleted(product.getDeleted())
                     .brand(product.getBrand())
-                    .category(product.getCategory())
-
-                    //                .bills(product.getBills())//EXPLAIN: cho vô là loop
-
                     .build()));
             jsonGenerator.writeObject(result);
         }
 
     }
 
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class ShortenJson {
-        private Integer id;
-
-        private String name;
-
-        private Double price;
-
-        private Integer quantity;
-
-        private String image;
-
-        private String introduction;
-
-        private Long created;
-
-        private Boolean deleted;
-
-        private Brand brand;
-
-        private Category category;
-    }
 }

@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.csrf().disable();                  //EXPLAIN: disable hack cookie của người dùng và gửi request
+        http.csrf().disable(); //disable hack cookie của người dùng và gửi request
     }
 
     @Bean

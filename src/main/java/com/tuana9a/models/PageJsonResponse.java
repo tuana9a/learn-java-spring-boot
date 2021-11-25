@@ -1,15 +1,15 @@
-package com.tuana9a.entities.query;
+package com.tuana9a.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@Data
-public class PageJson<T> {
+@Getter
+@Setter
+public class PageJsonResponse<T> {
 
-    public PageJson(Page<T> page) {
+    public PageJsonResponse(Page<T> page) {
         this.content = page.getContent();
         this.totalPages = page.getTotalPages();
         this.totalElements = page.getTotalElements();

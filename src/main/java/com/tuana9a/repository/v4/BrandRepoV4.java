@@ -1,25 +1,22 @@
 package com.tuana9a.repository.v4;
 
-import com.tuana9a.entities.data.Brand;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.tuana9a.entities.Brand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
-import javax.persistence.criteria.Predicate;
 
 @Repository
-
-@Data
-@AllArgsConstructor
 public class BrandRepoV4 {
 
-    private final EntityManager entityManager;
+    @Autowired
+    private EntityManager entityManager;
 
     public List<Brand> findAll() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();

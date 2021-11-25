@@ -1,6 +1,6 @@
 package com.tuana9a.service;
 
-import com.tuana9a.entities.query.PageJson;
+import com.tuana9a.models.PageJsonResponse;
 import com.tuana9a.specification.SpecificationBuilder;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -45,19 +45,12 @@ public abstract class BaseService<T> {
                 .orElse(repo.findAll(new SpecificationBuilder<T>().resolve(criteria)));
     }
 
-    public PageJson<T> filterPageable(List<String> criteria, Pageable pageable, String sortRequest) throws Exception {
+    public PageJsonResponse<T> filter(List<String> criteria, Pageable pageable, String sortRequest) throws Exception {
         return resolveSort(sortRequest)
-                .map(sort -> new PageJson<T>(
-                        repo.findAll(
-                                new SpecificationBuilder<T>().resolve(criteria),
-                                PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort)
-                        )
-                )).orElse(new PageJson<T>(
-                        repo.findAll(
-                                new SpecificationBuilder<T>().resolve(criteria),
-                                PageRequest.of(pageable.getPageNumber(), pageable.getPageSize())
-                        )
-                ));
+                .map(sort -> new PageJsonResponse<T>(repo.findAll(new SpecificationBuilder<T>().resolve(criteria),
+                        PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort))))
+                .orElse(new PageJsonResponse<T>(repo.findAll(new SpecificationBuilder<T>().resolve(criteria),
+                        PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()))));
     }
 
     private Optional<Sort> resolveSort(String sortRequest) {

@@ -1,8 +1,8 @@
 package com.tuana9a.controller.v1;
 
-import com.tuana9a.entities.data.Product;
-import com.tuana9a.entities.query.CountEntity;
-import com.tuana9a.entities.query.CountAnyByAny;
+import com.tuana9a.entities.Product;
+import com.tuana9a.models.CountEntity;
+import com.tuana9a.models.CountAnyByAny;
 import com.tuana9a.repository.v1.ProductRepoV1;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +23,14 @@ public class ProductControllerV1 {
     }
 
     @GetMapping("/")
-    public List<Product> queryAll() {
-        return repo.queryAll();
+    public List<Product> findALl() {
+        return repo.findAll();
     }
 
 
     @GetMapping("/{id}")
-    public Product queryById(@PathVariable("id") int id) {
-        return repo.queryById(id);
+    public Product findById(@PathVariable("id") int id) {
+        return repo.findById(id);
     }
 
     @PutMapping("/{id}")
@@ -45,17 +45,17 @@ public class ProductControllerV1 {
 
 
     @GetMapping("/count-all")
-    public Long queryCountAll() {
-        return repo.queryCountAll();
+    public Long countAll() {
+        return repo.countAll();
     }
 
-    @GetMapping("/count-all-custom")
-    public CountEntity queryCountAllCustom() {
-        return repo.queryCountAllCustom();
+    @GetMapping("/custom-count-all")
+    public CountEntity customCountAll() {
+        return repo.customCountAll();
     }
 
-    @GetMapping("/count-by-brand")
+    @GetMapping("/count-group-by-brand")
     public List<CountAnyByAny> queryCountProductByBrand() {
-        return repo.queryCountProductByBrand();
+        return repo.countGroupByBrand();
     }
 }

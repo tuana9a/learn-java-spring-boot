@@ -1,8 +1,7 @@
 package com.tuana9a.repository.v4;
 
-import com.tuana9a.entities.data.Product;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.tuana9a.entities.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -14,12 +13,10 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-
-@Data
-@AllArgsConstructor
 public class ProductRepoV4 {
 
-    private final EntityManager entityManager;
+    @Autowired
+    private EntityManager entityManager;
 
     public List<Product> findAllPriceSort(boolean desc) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();

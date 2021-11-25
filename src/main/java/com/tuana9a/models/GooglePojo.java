@@ -1,12 +1,13 @@
-package com.tuana9a.entities.social;
+package com.tuana9a.models;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
-@Data
-@ToString
-public class GooglePojo {
+@Getter
+@Setter
 
+public class GooglePojo {
     private String id;
     private String email;
     private String verified_email;
@@ -15,5 +16,4 @@ public class GooglePojo {
     private String family_name;
     private String picture;
     private String locale;
-
 }

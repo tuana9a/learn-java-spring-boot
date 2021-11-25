@@ -1,9 +1,9 @@
-package com.tuana9a.entities.query;
+package com.tuana9a.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class CountEntity {
     private String name;

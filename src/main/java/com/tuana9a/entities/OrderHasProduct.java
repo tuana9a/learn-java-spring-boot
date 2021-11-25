@@ -1,31 +1,29 @@
-package com.tuana9a.entities.data;
+package com.tuana9a.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.tuana9a.entities.key.BillHasProductKey;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "bill_has_product")
 
-@Data
+@Getter
+@Setter
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BillHasProduct {
+public class OrderHasProduct {
 
     @EmbeddedId
-    private BillHasProductKey key;
+    private OrderHasProductKey key;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @MapsId("billId")
-    @JoinColumn(name = "bill_id")
-    @JsonSerialize(using = Bill.SingleSerializer.class)
-    private Bill bill;
+    @JoinColumn(name = "order_id")
+    @JsonSerialize(using = Order.SingleSerializer.class)
+    private Order order;
 
     @ManyToOne
     @MapsId("productId")

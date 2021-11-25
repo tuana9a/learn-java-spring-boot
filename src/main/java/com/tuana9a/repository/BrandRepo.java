@@ -1,6 +1,6 @@
 package com.tuana9a.repository;
 
-import com.tuana9a.entities.data.Brand;
+import com.tuana9a.entities.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

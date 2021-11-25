@@ -1,6 +1,6 @@
 package com.tuana9a.controller.v4;
 
-import com.tuana9a.entities.data.Brand;
+import com.tuana9a.entities.Brand;
 import com.tuana9a.repository.v4.BrandRepoV4;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

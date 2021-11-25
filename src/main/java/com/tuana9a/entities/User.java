@@ -1,26 +1,32 @@
-package com.tuana9a.entities.data;
+package com.tuana9a.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-
 @Entity
-@Table(name = "customer")
+@Table(name = "user")
 
-@Data
+@Getter
+@Setter
 @Builder
+
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
+
+    @Column(name = "google_id")
+    private String googleId;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "name")
     private String name;
@@ -34,8 +40,7 @@ public class Customer {
     @Column(name = "deleted")
     private Boolean deleted;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address address;
-
 }

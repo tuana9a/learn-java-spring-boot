@@ -1,6 +1,6 @@
 package com.tuana9a.service;
 
-import com.tuana9a.entities.data.Brand;
+import com.tuana9a.entities.Brand;
 import com.tuana9a.repository.BrandRepo;
 import org.springframework.stereotype.Service;
 

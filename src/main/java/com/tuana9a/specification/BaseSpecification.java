@@ -1,7 +1,6 @@
 package com.tuana9a.specification;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -10,7 +9,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.Arrays;
 
-@Data
+@Getter
+@Setter
+
 @AllArgsConstructor
 public class BaseSpecification<T> implements Specification<T> {
 

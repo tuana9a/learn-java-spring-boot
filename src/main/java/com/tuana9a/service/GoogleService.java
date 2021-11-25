@@ -1,11 +1,9 @@
 package com.tuana9a.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tuana9a.entities.data.AppUser;
-import com.tuana9a.entities.social.GooglePojo;
-import com.tuana9a.repository.v3.UserRepoV3;
+import com.tuana9a.entities.User;
+import com.tuana9a.models.GooglePojo;
 import org.apache.http.client.fluent.Request;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.OAuth2Operations;
@@ -49,7 +47,7 @@ public class GoogleService implements SocialService {
     }
 
     @Override
-    public AppUser getUserInfoByToken(String token) throws Exception {
+    public User getUserInfoByToken(String token) throws Exception {
         String url = urlToGetUserInfo + token; // tạo link api
         String response = Request.Get(url)
                 .execute()
@@ -59,7 +57,7 @@ public class GoogleService implements SocialService {
         System.out.println(pojo);
 
 
-        return AppUser.builder() // tạo user mới
+        return User.builder() // tạo user mới
                 .googleId(pojo.getId())
                 .username(pojo.getEmail())
                 .name(pojo.getName())

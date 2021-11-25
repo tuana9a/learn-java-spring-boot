@@ -11,4 +11,8 @@ public class AppConfig {
     @Value("${file.upload.location}")
     public String FILE_UPLOAD_LOCATION;
 
+    public Integer CODE_OK = 1;
+
+    public Integer CODE_NOT_OK = 0;
+
 }

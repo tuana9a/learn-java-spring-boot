@@ -1,6 +1,6 @@
 package com.tuana9a.controller;
 
-import com.tuana9a.entities.data.AppUser;
+import com.tuana9a.entities.User;
 import com.tuana9a.repository.v3.UserRepoV3;
 import com.tuana9a.service.GoogleService;
 import com.tuana9a.service.JwtService;
@@ -31,9 +31,9 @@ public class OAuthGoogleController {
     @GetMapping("/google/callback")
     public ResponseEntity<Object> callback(@RequestParam(name = "code") String code) throws Exception {
         String accessToken = googleService.createAccessToken(code);
-        AppUser googleUser = googleService.getUserInfoByToken(accessToken);
-        AppUser existUser = userRepo.findByUsernameAndDeletedFalse(googleUser.getUsername());
-        AppUser result;
+        User googleUser = googleService.getUserInfoByToken(accessToken);
+        User existUser = userRepo.findByUsernameAndDeletedFalse(googleUser.getUsername());
+        User result;
         if (existUser != null) {
             existUser.setGoogleId(googleUser.getGoogleId());
             existUser.setName(googleUser.getName());

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/admin/users")
 
 @AllArgsConstructor
-public class AdminUserController {
+public class AdminUserControllerV3 {
     private final UserRepoV3 repo;
 
     @GetMapping("/")
