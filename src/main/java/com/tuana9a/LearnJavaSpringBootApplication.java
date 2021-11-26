@@ -1,6 +1,7 @@
 package com.tuana9a;
 
 import com.tuana9a.config.AppConfig;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
+@Log4j2
 public class LearnJavaSpringBootApplication implements CommandLineRunner {
 
     @Autowired
@@ -19,6 +21,6 @@ public class LearnJavaSpringBootApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println(config.CUSTOM_NAME);
+        log.info(config);
     }
 }

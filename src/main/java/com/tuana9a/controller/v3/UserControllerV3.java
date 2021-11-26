@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v3/public/users")
+@RequestMapping("api/v3/learn/users")
 
 public class UserControllerV3 {
     @Autowired

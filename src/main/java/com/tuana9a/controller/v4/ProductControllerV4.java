@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v4/public/products")
+@RequestMapping("/api/v4/learn/products")
 
 @AllArgsConstructor
 public class ProductControllerV4 {

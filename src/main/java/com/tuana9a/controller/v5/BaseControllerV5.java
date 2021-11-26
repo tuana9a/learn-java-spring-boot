@@ -1,4 +1,4 @@
-package com.tuana9a.controller;
+package com.tuana9a.controller.v5;
 
 import com.tuana9a.service.BaseService;
 import com.tuana9a.models.JsonResponse;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
-public abstract class BaseController<T> {
+public abstract class BaseControllerV5<T> {
     private final BaseService<T> service;
     private final JsonResponseUtils jsonResponseUtils;
 
-    public BaseController(BaseService<T> service, JsonResponseUtils jsonResponseUtils) {
+    public BaseControllerV5(BaseService<T> service, JsonResponseUtils jsonResponseUtils) {
         this.service = service;
         this.jsonResponseUtils = jsonResponseUtils;
     }

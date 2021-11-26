@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v2/public/bills")
+@RequestMapping("/api/v2/learn/bills")
 
 @AllArgsConstructor
 public class BillControllerV2 {
