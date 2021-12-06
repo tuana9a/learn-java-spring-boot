@@ -1,4 +1,4 @@
-package com.tuana9a.controller;
+package com.tuana9a.controllers;
 
 import com.tuana9a.entities.User;
 import com.tuana9a.repository.v3.UserRepoV3;

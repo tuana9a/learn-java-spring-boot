@@ -52,7 +52,7 @@ public class Product {
     private Brand brand;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "bill_has_product",
+    @JoinTable(name = "order_has_product",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id"))
     @JsonSerialize(using = Order.ListSerializer.class)

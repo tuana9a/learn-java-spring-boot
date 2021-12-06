@@ -27,7 +27,7 @@ public class BrandRepoV4 {
         return query.getResultList();
     }
 
-    public Brand findById(Integer id) {
+    public Brand findById(Long id) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Brand> criteriaQuery = builder.createQuery(Brand.class);
         Root<Brand> root = criteriaQuery.from(Brand.class);

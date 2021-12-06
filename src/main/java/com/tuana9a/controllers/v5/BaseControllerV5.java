@@ -1,4 +1,4 @@
-package com.tuana9a.controller.v5;
+package com.tuana9a.controllers.v5;
 
 import com.tuana9a.service.BaseService;
 import com.tuana9a.models.JsonResponse;

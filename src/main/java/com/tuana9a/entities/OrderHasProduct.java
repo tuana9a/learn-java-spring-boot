@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "bill_has_product")
+@Table(name = "order_has_product")
 
 @Getter
 @Setter
@@ -20,7 +20,7 @@ public class OrderHasProduct {
     private OrderHasProductKey key;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @MapsId("billId")
+    @MapsId("orderId")
     @JoinColumn(name = "order_id")
     @JsonSerialize(using = Order.SingleSerializer.class)
     private Order order;

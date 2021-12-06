@@ -1,4 +1,4 @@
-package com.tuana9a.controller;
+package com.tuana9a.controllers;
 
 import com.tuana9a.aop.LogTime;
 import com.tuana9a.config.AppConfig;

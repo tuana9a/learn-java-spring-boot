@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepoV2 extends JpaRepository<Order, Integer> {
+public interface OrderRepoV2 extends JpaRepository<Order, Long> {
 }

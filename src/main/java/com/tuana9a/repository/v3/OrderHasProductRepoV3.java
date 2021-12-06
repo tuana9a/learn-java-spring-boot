@@ -10,13 +10,13 @@ import java.util.List;
 @Repository
 public interface OrderHasProductRepoV3 extends JpaRepository<OrderHasProduct, OrderHasProductKey> {
 
-    List<OrderHasProduct> findByKey_ProductId(Integer id);
+    List<OrderHasProduct> findByKey_ProductId(Long id);
 
     List<OrderHasProduct> findByProduct_NameContains(String name);
 
-    List<OrderHasProduct> findByOrder_Id(Integer id);
+    List<OrderHasProduct> findByOrder_Id(Long id);
 
-    List<OrderHasProduct> findByOrder_User_Id(Integer id);
+    List<OrderHasProduct> findByOrder_User_Id(Long id);
 
     List<OrderHasProduct> findByOrder_User_NameContains(String name);
 

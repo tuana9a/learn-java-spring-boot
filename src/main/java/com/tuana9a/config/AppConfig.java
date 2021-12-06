@@ -10,11 +10,13 @@ public class AppConfig {
     @Value("${custom.name}")
     public String CUSTOM_NAME;
 
-    @Value("${file.upload.location}")
+    @Value("${custom.file.upload.location}")
     public String FILE_UPLOAD_LOCATION;
 
     public Integer CODE_OK = 1;
 
     public Integer CODE_NOT_OK = 0;
+
+    public String JWT_TOKEN_NAME = "token";
 
 }

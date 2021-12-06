@@ -1,4 +1,4 @@
-package com.tuana9a.controller;
+package com.tuana9a.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
