@@ -10,8 +10,8 @@ public class AppConfig {
     @Value("${custom.name}")
     public String CUSTOM_NAME;
 
-    @Value("${custom.file.upload.location}")
-    public String FILE_UPLOAD_LOCATION;
+    @Value("${custom.root_folder}")
+    public String ROOT_FOLDER;
 
     public Integer CODE_OK = 1;
 
