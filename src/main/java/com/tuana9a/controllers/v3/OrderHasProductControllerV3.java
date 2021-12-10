@@ -2,7 +2,6 @@ package com.tuana9a.controllers.v3;
 
 import com.tuana9a.entities.OrderHasProduct;
 import com.tuana9a.repository.v3.OrderHasProductRepoV3;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

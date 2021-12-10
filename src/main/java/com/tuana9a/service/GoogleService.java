@@ -54,8 +54,6 @@ public class GoogleService implements SocialService {
                 .returnContent()
                 .asString(); // call api
         GooglePojo pojo = new ObjectMapper().readValue(response, GooglePojo.class); // map với entity
-        System.out.println(pojo);
-
 
         return User.builder() // tạo user mới
                 .googleId(pojo.getId())

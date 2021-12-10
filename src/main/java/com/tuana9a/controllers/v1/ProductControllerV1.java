@@ -1,14 +1,9 @@
 package com.tuana9a.controllers.v1;
 
 import com.tuana9a.entities.Product;
-import com.tuana9a.models.CountEntity;
-import com.tuana9a.models.CountAnyByAny;
 import com.tuana9a.repository.v1.ProductRepoV1;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController

@@ -1,9 +1,16 @@
 package com.tuana9a.controllers;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import com.tuana9a.config.AppConfig;
 import com.tuana9a.entities.User;
+import com.tuana9a.models.JsonResponse;
 import com.tuana9a.repository.v3.UserRepoV3;
 import com.tuana9a.service.GoogleService;
 import com.tuana9a.service.JwtService;
+import com.tuana9a.utils.JsonResponseUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,26 +30,44 @@ public class OAuthGoogleController {
     @Autowired
     private UserRepoV3 userRepo;
 
+    @Autowired
+    private AppConfig config;
+
+    @Autowired
+    private JsonResponseUtils jsonResponseUtils;
+
     @GetMapping("/google/login")
     public String login() {
         return "redirect:" + googleService.createAuthorizationURL();
     }
 
     @GetMapping("/google/callback")
-    public ResponseEntity<Object> callback(@RequestParam(name = "code") String code) throws Exception {
-        String accessToken = googleService.createAccessToken(code);
+    public ResponseEntity<JsonResponse> callback(@RequestParam(name = "code") String code, HttpServletResponse resp) throws Exception {
+        String accessToken = null;
+        try {
+            accessToken = googleService.createAccessToken(code);
+        } catch (Exception ignored) {
+        }
+
+        if(accessToken == null) {
+            return jsonResponseUtils.badRequest("invalid request");
+        }
+        
         User googleUser = googleService.getUserInfoByToken(accessToken);
-        User existUser = userRepo.findByUsernameAndDeletedFalse(googleUser.getUsername());
+        String username = googleUser.getUsername();
+        User existUser = userRepo.findByUsernameAndDeletedFalse(username);
         User result;
-        if (existUser != null) {
+        if (existUser == null) {
+            googleUser.setId(System.currentTimeMillis());
+            result = userRepo.save(googleUser);
+        } else {
             existUser.setGoogleId(googleUser.getGoogleId());
             existUser.setName(googleUser.getName());
             result = userRepo.save(existUser);
-        } else {
-            googleUser.setId(System.currentTimeMillis());
-            result = userRepo.save(googleUser);
         }
-        return ResponseEntity.ok(result);
+        Cookie cookie = new Cookie(config.JWT_TOKEN_NAME, jwtService.generateToken(username));
+        resp.addCookie(cookie);
+        return jsonResponseUtils.ok(result);
     }
 
 }

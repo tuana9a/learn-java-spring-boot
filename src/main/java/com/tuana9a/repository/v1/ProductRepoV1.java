@@ -14,9 +14,10 @@ import java.util.List;
 @Repository
 public class ProductRepoV1 {
 
-    // TODO: hình như mình nhớ không nhầm thì autowired vs persistence context là khác nhau
+    
     // @Autowired
     @PersistenceContext
+    // autowired và persistence context có sự khác nhau
     private EntityManager entityManager;
 
     public Product findById(int id) {
