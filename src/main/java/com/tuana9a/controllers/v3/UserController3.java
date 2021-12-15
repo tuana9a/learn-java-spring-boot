@@ -4,7 +4,7 @@ import com.tuana9a.config.AppConfig;
 import com.tuana9a.entities.User;
 import com.tuana9a.models.LoginForm;
 import com.tuana9a.models.RegisterForm;
-import com.tuana9a.repository.v3.UserRepoV3;
+import com.tuana9a.repository.v3.UserRepo3;
 import com.tuana9a.service.JwtService;
 import com.tuana9a.utils.EncodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("api/v3/users")
-public class UserControllerV3 {
+public class UserController3 {
     @Autowired
-    private UserRepoV3 repo;
+    private UserRepo3 repo;
 
     @Autowired
     private JwtService jwtService;

@@ -1,4 +1,4 @@
-package com.tuana9a.service;
+package com.tuana9a.service.v5;
 
 import com.tuana9a.models.PageJsonResponse;
 import com.tuana9a.specification.SpecificationBuilder;
@@ -15,13 +15,13 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class BaseService<T> {
+public abstract class BaseService5<T> {
 
     private final JpaSpecificationExecutor<T> repo;
     private final Class<T> _class;
     private final EntityManager entityManager;
 
-    public BaseService(JpaSpecificationExecutor<T> repo, Class<T> _class, EntityManager entityManager) {
+    public BaseService5(JpaSpecificationExecutor<T> repo, Class<T> _class, EntityManager entityManager) {
         this.repo = repo;
         this._class = _class;
         this.entityManager = entityManager;

@@ -7,5 +7,5 @@ import lombok.*;
 @AllArgsConstructor
 public class CountEntity {
     private String name;
-    private Long size;
+    private Long count;
 }

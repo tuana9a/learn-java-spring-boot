@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderHasProductRepoV3 extends JpaRepository<OrderHasProduct, OrderHasProductKey> {
+public interface OrderHasProductRepo3 extends JpaRepository<OrderHasProduct, OrderHasProductKey> {
 
     List<OrderHasProduct> findByKey_ProductId(Long id);
 

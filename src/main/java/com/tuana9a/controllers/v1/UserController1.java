@@ -2,7 +2,7 @@ package com.tuana9a.controllers.v1;
 
 import com.tuana9a.entities.User;
 import com.tuana9a.models.JsonResponse;
-import com.tuana9a.repository.v1.UserRepoV1;
+import com.tuana9a.repository.v1.UserRepo1;
 import com.tuana9a.utils.JsonResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
-public class UserControllerV1 {
+public class UserController1 {
 
     @Autowired
-    private UserRepoV1 repo;
+    private UserRepo1 repo;
 
     @Autowired
     private JsonResponseUtils responseUtils;
@@ -25,19 +25,19 @@ public class UserControllerV1 {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<JsonResponse> findById(@PathVariable("id") Integer id) {
-        User result = repo.find(id);
+    public ResponseEntity<JsonResponse> findById(@PathVariable("id") Long id) {
+        User result = repo.findById(id);
         return responseUtils.ok(result);
     }
 
     @PutMapping
     public ResponseEntity<JsonResponse> merge(@RequestBody User object) {
-        repo.merge(object);
+        User result = repo.merge(object);
         return responseUtils.updated();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<JsonResponse> remove(@PathVariable("id") Integer id) {
+    public ResponseEntity<JsonResponse> remove(@PathVariable("id") Long id) {
         repo.remove(id);
         return responseUtils.deleted();
     }

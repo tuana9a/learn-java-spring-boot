@@ -1,6 +1,6 @@
 package com.tuana9a.security;
 
-import com.tuana9a.repository.v3.UserRepoV3;
+import com.tuana9a.repository.v3.UserRepo3;
 import com.tuana9a.service.JwtService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -15,7 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final UserRepoV3 userRepo;
+    private final UserRepo3 userRepo;
     private final JwtService jwtService;
 
     @Override

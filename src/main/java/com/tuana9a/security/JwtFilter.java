@@ -1,6 +1,6 @@
 package com.tuana9a.security;
 
-import com.tuana9a.repository.v3.UserRepoV3;
+import com.tuana9a.repository.v3.UserRepo3;
 import com.tuana9a.service.JwtService;
 import lombok.AllArgsConstructor;
 import org.springframework.core.annotation.Order;
@@ -13,7 +13,7 @@ import java.io.IOException;
 @Order(2)
 @AllArgsConstructor
 public class JwtFilter implements Filter {
-    private final UserRepoV3 userRepo;
+    private final UserRepo3 userRepo;
     private final JwtService jwtService;
 
     @Override

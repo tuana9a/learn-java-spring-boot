@@ -1,7 +1,7 @@
 package com.tuana9a.controllers.v3;
 
 import com.tuana9a.entities.OrderHasProduct;
-import com.tuana9a.repository.v3.OrderHasProductRepoV3;
+import com.tuana9a.repository.v3.OrderHasProductRepo3;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,10 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v3/order-has-product")
-public class OrderHasProductControllerV3 {
+public class OrderHasProductController3 {
 
     @Autowired
-    private OrderHasProductRepoV3 repo;
+    private OrderHasProductRepo3 repo;
 
     @GetMapping("/order/{id}")
     public List<OrderHasProduct> findByOrderId(@PathVariable("id") Long id) {

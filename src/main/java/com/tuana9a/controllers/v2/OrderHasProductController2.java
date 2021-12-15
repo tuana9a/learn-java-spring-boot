@@ -5,7 +5,7 @@ import com.tuana9a.entities.OrderHasProduct;
 import com.tuana9a.entities.Product;
 import com.tuana9a.entities.User;
 import com.tuana9a.entities.OrderHasProductKey;
-import com.tuana9a.repository.v2.OrderHasProductRepoV2;
+import com.tuana9a.repository.v2.OrderHasProductRepo2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -16,10 +16,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v2/order-has-product")
-public class OrderHasProductControllerV2 {
+public class OrderHasProductController2 {
 
     @Autowired
-    private OrderHasProductRepoV2 repo;
+    private OrderHasProductRepo2 repo;
 
     @PostMapping
     public void save(@RequestBody OrderHasProduct orderHasProduct) {

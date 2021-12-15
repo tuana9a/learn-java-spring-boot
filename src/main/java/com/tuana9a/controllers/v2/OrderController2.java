@@ -1,7 +1,7 @@
 package com.tuana9a.controllers.v2;
 
 import com.tuana9a.entities.Order;
-import com.tuana9a.repository.v2.OrderRepoV2;
+import com.tuana9a.repository.v2.OrderRepo2;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +12,9 @@ import java.util.Optional;
 @RequestMapping("/api/v2/orders")
 
 @AllArgsConstructor
-public class OrderControllerV2 {
+public class OrderController2 {
 
-    private final OrderRepoV2 repo;
+    private final OrderRepo2 repo;
 
     @PostMapping
     public void save(@RequestBody Order order) {

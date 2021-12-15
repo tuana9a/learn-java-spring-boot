@@ -13,7 +13,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class BrandRepoV4 {
+public class BrandRepo4 {
 
     @Autowired
     private EntityManager entityManager;

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.tuana9a.config.AppConfig;
 import com.tuana9a.entities.User;
 import com.tuana9a.models.JsonResponse;
-import com.tuana9a.repository.v3.UserRepoV3;
+import com.tuana9a.repository.v3.UserRepo3;
 import com.tuana9a.service.GoogleService;
 import com.tuana9a.service.JwtService;
 import com.tuana9a.utils.JsonResponseUtils;
@@ -28,7 +28,7 @@ public class OAuthGoogleController {
     private GoogleService googleService;
 
     @Autowired
-    private UserRepoV3 userRepo;
+    private UserRepo3 userRepo;
 
     @Autowired
     private AppConfig config;

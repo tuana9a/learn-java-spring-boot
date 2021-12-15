@@ -1,7 +1,7 @@
 package com.tuana9a.controllers.v4;
 
 import com.tuana9a.entities.Brand;
-import com.tuana9a.repository.v4.BrandRepoV4;
+import com.tuana9a.repository.v4.BrandRepo4;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v4/brands")
-public class BrandControllerV4 {
+public class BrandController4 {
 
     @Autowired
-    private BrandRepoV4 repo;
+    private BrandRepo4 repo;
 
     @GetMapping
     public List<Brand> findAll() {

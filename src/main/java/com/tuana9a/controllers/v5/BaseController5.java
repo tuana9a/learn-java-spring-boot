@@ -1,6 +1,6 @@
 package com.tuana9a.controllers.v5;
 
-import com.tuana9a.service.BaseService;
+import com.tuana9a.service.v5.BaseService5;
 import com.tuana9a.models.JsonResponse;
 import com.tuana9a.utils.JsonResponseUtils;
 import org.springframework.data.domain.Pageable;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
-public abstract class BaseControllerV5<T> {
-    private final BaseService<T> service;
+public abstract class BaseController5<T> {
+    private final BaseService5<T> service;
     private final JsonResponseUtils jsonResponseUtils;
 
-    public BaseControllerV5(BaseService<T> service, JsonResponseUtils jsonResponseUtils) {
+    public BaseController5(BaseService5<T> service, JsonResponseUtils jsonResponseUtils) {
         this.service = service;
         this.jsonResponseUtils = jsonResponseUtils;
     }

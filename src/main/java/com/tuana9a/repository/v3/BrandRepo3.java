@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BrandRepoV3 extends JpaRepository<Brand, Integer> {
+public interface BrandRepo3 extends JpaRepository<Brand, Integer> {
     Optional<Brand> findByIdAndDeletedFalse(Integer id);
 
     long countByNameIsLikeAndDeletedFalse(String name);

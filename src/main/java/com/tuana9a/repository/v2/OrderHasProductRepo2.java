@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderHasProductRepoV2 extends JpaRepository<OrderHasProduct, OrderHasProductKey> {
+public interface OrderHasProductRepo2 extends JpaRepository<OrderHasProduct, OrderHasProductKey> {
 
 }

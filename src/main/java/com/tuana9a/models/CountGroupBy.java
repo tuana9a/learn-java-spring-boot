@@ -5,7 +5,7 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CountAnyByAny {
-    private String anyName;
-    private Long quantity;
+public class CountGroupBy {
+    private String name;
+    private Long count;
 }

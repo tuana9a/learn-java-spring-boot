@@ -1,25 +1,27 @@
 package com.tuana9a.controllers.v1;
 
 import com.tuana9a.entities.Product;
-import com.tuana9a.repository.v1.ProductRepoV1;
+import com.tuana9a.repository.v1.ProductRepo1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/api/v1/products")
-public class ProductControllerV1 {
+public class ProductController1 {
 
     @Autowired
-    private ProductRepoV1 repo;
+    private ProductRepo1 repo;
 
     @PostMapping
     public void persist(@RequestBody Product object) {
-        repo.persist(object);
+        repo.insert(object);
     }
 
     @GetMapping
-    public Object find(@RequestParam(name = "which") String which) {
+    public Object find(@RequestParam(name = "which") String which,
+                       @RequestParam(name = "name", required = false) String name,
+                       @RequestParam(name = "value", required = false) String value) {
         Object result;
         switch (which) {
             case "count-all":
@@ -31,6 +33,9 @@ public class ProductControllerV1 {
             case "count-group-by-brand":
                 result = repo.countGroupByBrand();
                 break;
+            case "by":
+                result = repo.findBy(name, value);
+                break;
             default:
                 result = repo.findAll();
                 break;
@@ -39,18 +44,18 @@ public class ProductControllerV1 {
     }
 
     @GetMapping("/{id}")
-    public Product findById(@PathVariable("id") int id) {
+    public Product findById(@PathVariable("id") Long id) {
         return repo.findById(id);
     }
 
     @PutMapping("/{id}")
     public void merge(@RequestBody Product object) {
-        repo.merge(object);
+        repo.update(object);
     }
 
     @DeleteMapping("/{id}")
-    public void remove(@PathVariable("id") int id) {
-        repo.remove(id);
+    public void remove(@PathVariable("id") Long id) {
+        repo.delete(id);
     }
 
 }
