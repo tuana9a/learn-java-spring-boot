@@ -33,7 +33,7 @@ public class JsonResponseUtils {
                         .build());
     }
 
-    public ResponseEntity<JsonResponse> updated() {
+    public ResponseEntity<JsonResponse> updated(Object data) {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
                 .body(JsonResponse.builder()
@@ -42,6 +42,13 @@ public class JsonResponseUtils {
                         .data(null)
                         .build());
     }
+
+
+    public ResponseEntity<JsonResponse> updated() {
+        return this.updated(null);
+    }
+
+    
 
     public ResponseEntity<JsonResponse> deleted() {
         return ResponseEntity

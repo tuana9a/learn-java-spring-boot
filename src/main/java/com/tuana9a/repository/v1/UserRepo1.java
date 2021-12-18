@@ -1,7 +1,6 @@
 package com.tuana9a.repository.v1;
 
 import com.tuana9a.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

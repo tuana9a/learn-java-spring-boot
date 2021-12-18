@@ -15,7 +15,6 @@ public class ExceptionController {
 
     @ExceptionHandler
     public ResponseEntity<JsonResponse> exception(Exception e) {
-        System.out.println("SAFE");
         e.printStackTrace();
         return responseUtils.internalServerError(e);
     }

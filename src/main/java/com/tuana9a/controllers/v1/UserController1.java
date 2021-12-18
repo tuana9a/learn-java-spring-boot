@@ -33,7 +33,7 @@ public class UserController1 {
     @PutMapping
     public ResponseEntity<JsonResponse> merge(@RequestBody User object) {
         User result = repo.merge(object);
-        return responseUtils.updated();
+        return responseUtils.updated(result);
     }
 
     @DeleteMapping("/{id}")
