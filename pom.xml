@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tuana9a</groupId>
-	<artifactId>learn-java-spring-boot</artifactId>
+	<artifactId>learnjavaspringboot</artifactId>
 	<version>1.0.0</version>
 
 	<packaging>jar</packaging>
