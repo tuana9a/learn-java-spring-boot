@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "_order") // order is a keyword in SQL syntax
+@Table(name = "orderr") // order is a keyword in SQL syntax
 
 @Getter
 @Setter
